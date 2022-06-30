@@ -10,17 +10,18 @@ class easy_1_Solution:
     Output: [0,1]
     Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
     """
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        out_list = []
-        for i in range(0,len(nums)):
-            if i < len(nums)-1:
-                if nums[i] + nums[i+1] == target:
-                    out_list.append(i)
-                    out_list.append(i+1)
-        return out_list
+    def twoSum_Good(self, nums: List[int], target: int) -> List[int]:
+
+        seen_nums = {}
+        
+        for i, num in enumerate(nums):
+            if target - num in seen_nums:
+                return([seen_nums[target - num], i])
+            elif num not in seen_nums:
+                seen_nums[num] = i
 
 easy_1 = easy_1_Solution()
 nums = [2,3,4,5,6,7,8,9]
 target  = 9
-result = easy_1.twoSum(nums,target)
+result = easy_1.twoSum_Good(nums,target)
 print(f"result: {result}")
